@@ -1,0 +1,7 @@
+.previews-wrapper {
+  display: flex;
+}
+
+.preview-cards {
+  width: 30%;
+}
