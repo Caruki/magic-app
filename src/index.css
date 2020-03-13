@@ -1,3 +1,10 @@
 body {
   margin: 0;
+
+  background-image: linear-gradient(to bottom right, #254857, #072429);
+  overflow: hidden;
+  display: flex;
+  height: 100vh;
+  flex-flow: column nowrap;
+  align-items: center;
 }
