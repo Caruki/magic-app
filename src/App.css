@@ -1,0 +1,12 @@
+.body-container {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+}
+
+.main {
+  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+}
