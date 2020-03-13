@@ -12,6 +12,7 @@ export default function App() {
     <Router>
       <div className="body-container">
         <Header />
+
         <main className="main">
           <Switch>
             <Route path="/newset">
