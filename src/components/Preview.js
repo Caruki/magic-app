@@ -49,7 +49,6 @@ export default function Preview(props) {
 
   function showCards(setName) {
     if (setName === 'newSets') {
-      console.log(newSet());
       return newSet();
     } else return;
   }
