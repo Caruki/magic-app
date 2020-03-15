@@ -14,29 +14,34 @@ export default function Home() {
   return (
     <>
       <div className="wrapper">
-        <img className="theros-symbol" src={Theros} alt=""></img>
-        <div className="heading">The New Set - Theros Beyond Death</div>
-        <img className="theros-symbol" src={Theros} alt=""></img>
-        <Preview></Preview>
+        <div className="text-wrapper">
+          <img className="theros-symbol" src={Theros} alt=""></img>
+          <div className="heading">The New Set - Theros Beyond Death</div>
+          <img className="theros-symbol" src={Theros} alt=""></img>
+        </div>
+        <Preview name="newSet"></Preview>
       </div>
       <div className="wrapper">
-        <img className="symbol" src={Core} alt=""></img>
-        <img className="symbol" src={RavnicaAll} alt=""></img>
-        <img className="symbol" src={Eldraine} alt=""></img>
-        <div className="heading">Browse All Current Sets</div>
-        <img className="symbol" src={War} alt=""></img>
-        <img className="symbol" src={TherosBW} alt=""></img>
-        <img className="symbol" src={RavnicaGuild} alt=""></img>
-
-        <Preview></Preview>
+        <div className="text-wrapper">
+          <img className="symbol" src={Core} alt=""></img>
+          <img className="symbol" src={RavnicaAll} alt=""></img>
+          <img className="symbol" src={Eldraine} alt=""></img>
+          <div className="heading">Browse All Current Sets</div>
+          <img className="symbol" src={War} alt=""></img>
+          <img className="symbol" src={TherosBW} alt=""></img>
+          <img className="symbol" src={RavnicaGuild} alt=""></img>
+        </div>
+        <Preview name="allSets"></Preview>
       </div>
       <div className="wrapper">
-        <i className="ms ms-w ms-cost ms-shadow manafont"></i>
-        <i className="ms ms-u ms-cost ms-shadow manafont"></i>
-        <div className="heading">Your Customized Decks</div>
-        <i className="ms ms-r ms-cost ms-shadow manafont "></i>
-        <i className="ms ms-b ms-cost ms-shadow manafont"></i>
-        <Preview></Preview>
+        <div className="text-wrapper">
+          <i className="ms ms-w ms-cost ms-shadow manafont"></i>
+          <i className="ms ms-u ms-cost ms-shadow manafont"></i>
+          <div className="heading">Your Customized Decks</div>
+          <i className="ms ms-r ms-cost ms-shadow manafont "></i>
+          <i className="ms ms-b ms-cost ms-shadow manafont"></i>
+        </div>
+        <Preview name="customizedSets"></Preview>
       </div>
     </>
   );
