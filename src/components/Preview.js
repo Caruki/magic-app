@@ -45,6 +45,7 @@ export default function Preview(props) {
         className="card-example"
         key={setCard.image_uris.border_crop.toString()}
         src={setCard.image_uris.border_crop}
+        setURL={setCard.set_search_uri}
         alt=""
       ></img>
     ));
@@ -58,6 +59,7 @@ export default function Preview(props) {
         className="card-example"
         key={setCard.image_uris.border_crop.toString()}
         src={setCard.image_uris.border_crop}
+        setURL={setCard.set_search_uri}
         alt=""
       ></img>
     ));
