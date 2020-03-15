@@ -51,7 +51,7 @@ export default function Preview(props) {
     } else return;
   }
 
-  function allSets(setName) {
+  function allSets() {
     if (cardExamples) {
       const allSets = cardExamples.filter(index => index.length > 0);
       allSets.map(setCard => (
