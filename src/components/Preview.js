@@ -54,7 +54,7 @@ export default function Preview(props) {
 
   function allSets() {
     const allSets = cardExamples?.slice(1);
-    const cards = allSets.map(setCard => (
+    const cards = allSets?.map(setCard => (
       <img
         className="card-example"
         key={setCard.image_uris.border_crop.toString()}
