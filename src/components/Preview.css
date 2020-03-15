@@ -1,8 +1,8 @@
 .previews-wrapper {
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
   justify-content: center;
+  width: 100vw;
 }
 
 .card-example {
