@@ -3,7 +3,7 @@ import './Preview.css';
 
 export default function Preview(props) {
   // const cardExamples = [];
-  const [cardExamples, setCard] = React.useState([]);
+  const [cardExamples, setCardExamples] = React.useState([]);
 
   React.useEffect(() => {
     async function getCards() {
@@ -34,43 +34,47 @@ export default function Preview(props) {
         responses.map(response => response.json())
       );
       const cardExamples = results;
-      setCard(cardExamples);
+      setCardExamples(cardExamples);
     }
     getCards();
   }, []);
 
   function newSet() {
-    if (cardExamples) {
-      cardExamples[0].data.map(setCard => (
-        <img
-          key={setCard.image_uris.border_crop.toString()}
-          src={setCard.image_uris.border_crop}
-          alt=""
-        ></img>
-      ));
-    } else return;
+    const cards = cardExamples[0]?.data.map(setCard => (
+      <img
+        key={setCard.image_uris.border_crop.toString()}
+        src={setCard.image_uris.border_crop}
+        alt=""
+      ></img>
+    ));
+    console.log(cards);
+    return <div>{cards}</div>;
   }
 
   function allSets() {
     if (cardExamples) {
-      const allSets = cardExamples.filter(index => index.length > 0);
-      allSets.map(setCard => (
+      const allSets = cardExamples?.filter(index => index.length > 0);
+      console.log(allSets);
+      const cards = allSets.map(setCard => (
         <img
           key={setCard.image_uris.border_crop.toString()}
           src={setCard.image_uris.border_crop}
           alt=""
         ></img>
       ));
+      return <div>{cards}</div>;
     }
   }
 
   function showCards(setName) {
     if (setName === 'newSets') {
+      console.log(newSet());
       return newSet();
     } else if (setName === 'allSets') {
+      console.log(allSets());
       return allSets();
     } else return 'error';
   }
 
-  return <div className="previews-wrapper">{showCards(props.name)}</div>;
+  return <div className="previews-wrapper">{allSets()}</div>;
 }

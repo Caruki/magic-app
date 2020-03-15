@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css';
+import { Link } from 'react-router-dom';
 import Theros from '../assets/theros-symbol.svg';
 import War from '../assets/war.svg';
 import Core from '../assets/core.svg';
@@ -16,7 +17,9 @@ export default function Home() {
       <div className="wrapper">
         <div className="text-wrapper">
           <img className="theros-symbol" src={Theros} alt=""></img>
-          <div className="heading">The New Set - Theros Beyond Death</div>
+          <Link to="/newset" className="heading">
+            The New Set - Theros Beyond Death
+          </Link>
           <img className="theros-symbol" src={Theros} alt=""></img>
         </div>
         <Preview name="newSet"></Preview>
@@ -26,7 +29,9 @@ export default function Home() {
           <img className="symbol" src={Core} alt=""></img>
           <img className="symbol" src={RavnicaAll} alt=""></img>
           <img className="symbol" src={Eldraine} alt=""></img>
-          <div className="heading">Browse All Current Sets</div>
+          <Link to="/all" className="heading">
+            Browse All Current Sets
+          </Link>
           <img className="symbol" src={War} alt=""></img>
           <img className="symbol" src={TherosBW} alt=""></img>
           <img className="symbol" src={RavnicaGuild} alt=""></img>
@@ -37,7 +42,9 @@ export default function Home() {
         <div className="text-wrapper">
           <i className="ms ms-w ms-cost ms-shadow manafont"></i>
           <i className="ms ms-u ms-cost ms-shadow manafont"></i>
-          <div className="heading">Your Customized Decks</div>
+          <Link to="/custom/:userId" className="heading">
+            Your Customized Decks
+          </Link>
           <i className="ms ms-r ms-cost ms-shadow manafont "></i>
           <i className="ms ms-b ms-cost ms-shadow manafont"></i>
         </div>
