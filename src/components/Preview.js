@@ -27,7 +27,7 @@ export default function Preview(props) {
           'https://api.scryfall.com/cards/83e61813-c4c8-4e80-8808-ac5107966ee3'
         ),
         fetch(
-          'https://api.scryfall.com/cards/83e61813-c4c8-4e80-8808-ac5107966ee3'
+          'https://api.scryfall.com/cards/eee1d0b9-64c0-466e-978d-31e744f156d6'
         )
       ]);
       const results = await Promise.all(
@@ -42,39 +42,38 @@ export default function Preview(props) {
   function newSet() {
     const cards = cardExamples[0]?.data.map(setCard => (
       <img
+        className="card-example"
         key={setCard.image_uris.border_crop.toString()}
         src={setCard.image_uris.border_crop}
         alt=""
       ></img>
     ));
-    console.log(cards);
-    return <div>{cards}</div>;
+    return <div className="previews-wrapper">{cards}</div>;
   }
 
   function allSets() {
-    if (cardExamples) {
-      const allSets = cardExamples?.filter(index => index.length > 0);
-      console.log(allSets);
-      const cards = allSets.map(setCard => (
-        <img
-          key={setCard.image_uris.border_crop.toString()}
-          src={setCard.image_uris.border_crop}
-          alt=""
-        ></img>
-      ));
-      return <div>{cards}</div>;
-    }
+    const allSets = cardExamples?.slice(1);
+    const cards = allSets.map(setCard => (
+      <img
+        className="card-example"
+        key={setCard.image_uris.border_crop.toString()}
+        src={setCard.image_uris.border_crop}
+        alt=""
+      ></img>
+    ));
+    return <div className="previews-wrapper">{cards}</div>;
   }
 
   function showCards(setName) {
-    if (setName === 'newSets') {
-      console.log(newSet());
+    if (setName === 'newSet') {
       return newSet();
     } else if (setName === 'allSets') {
-      console.log(allSets());
       return allSets();
-    } else return 'error';
+    } else if (setName === 'customizedSets') {
+      return 'Not Valid';
+    }
+    return 'error';
   }
 
-  return <div className="previews-wrapper">{allSets()}</div>;
+  return <div>{showCards(props.name)}</div>;
 }
