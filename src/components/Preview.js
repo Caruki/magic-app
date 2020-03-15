@@ -40,22 +40,37 @@ export default function Preview(props) {
   }, []);
 
   function newSet() {
-    cardExamples[0].data.map(setCard => {
-      let imageURL = setCard.image_uris.border_crop;
-      console.log(imageURL);
-      return imageURL;
-    });
+    if (cardExamples) {
+      cardExamples[0].data.map(setCard => (
+        <img
+          key={setCard.image_uris.border_crop.toString()}
+          src={setCard.image_uris.border_crop}
+          alt=""
+        ></img>
+      ));
+    } else return;
+  }
+
+  function allSets(setName) {
+    if (cardExamples) {
+      const allSets = cardExamples.filter(index => index.length > 0);
+      allSets.map(setCard => (
+        <img
+          key={setCard.image_uris.border_crop.toString()}
+          src={setCard.image_uris.border_crop}
+          alt=""
+        ></img>
+      ));
+    }
   }
 
   function showCards(setName) {
     if (setName === 'newSets') {
       return newSet();
-    } else return;
+    } else if (setName === 'allSets') {
+      return allSets();
+    } else return 'error';
   }
 
-  return (
-    <div className="previews-wrapper">
-      <img className="card-example" src={showCards(props.name)} alt=""></img>
-    </div>
-  );
+  return <div className="previews-wrapper">{showCards(props.name)}</div>;
 }
