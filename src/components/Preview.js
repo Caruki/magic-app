@@ -1,9 +1,10 @@
 import React from 'react';
 import './Preview.css';
 import CardExample from './CardExample';
+import PreviewsWrapper from './PreviewsWrapper';
+import Link from 'react-router-dom';
 
-export default function Preview(props) {
-  // const cardExamples = [];
+export default function Preview({ name }) {
   const [cardExamples, setCardExamples] = React.useState([]);
 
   React.useEffect(() => {
@@ -40,41 +41,36 @@ export default function Preview(props) {
     getCards();
   }, []);
 
-  function newSet() {
-    const cards = cardExamples[0]?.data.map(setCard => (
-      <CardExample
-        key={setCard.image_uris.border_crop.toString()}
-        src={setCard.image_uris.border_crop}
-        setURL={setCard.set_search_uri}
-        alt=""
-      ></CardExample>
-    ));
-    return <div className="previews-wrapper">{cards}</div>;
+  function getNewSetCards() {
+    return cardExamples[0]?.data;
   }
 
-  function allSets() {
-    const allSets = cardExamples?.slice(1);
-    const cards = allSets?.map(setCard => (
-      <CardExample
-        key={setCard.image_uris.border_crop.toString()}
-        src={setCard.image_uris.border_crop}
-        setURL={setCard.set_search_uri}
-        alt=""
-      ></CardExample>
-    ));
-    return <div className="previews-wrapper">{cards}</div>;
+  function getAllSetCards() {
+    return cardExamples?.slice(1);
   }
 
-  function showCards(setName) {
+  function getCardsBySet(setName) {
     if (setName === 'newSet') {
-      return newSet();
+      return getNewSetCards();
     } else if (setName === 'allSets') {
-      return allSets();
-    } else if (setName === 'customizedSets') {
-      return 'Not Valid';
+      return getAllSetCards();
+    } else {
+      return [];
     }
-    return 'error';
   }
+  const isAllSet = name === 'allSets';
+  const cards = getCardsBySet(name);
 
-  return <div>{showCards(props.name)}</div>;
+  return (
+    <PreviewsWrapper>
+      {isAllSet &&
+        cards?.map(card => (
+          <Link to={`/all/${card.set_name}`} key={card.id}>
+            <CardExample card={card} />
+          </Link>
+        ))}
+      {!isAllSet &&
+        cards?.map(card => <CardExample card={card} key={card.id} />)}
+    </PreviewsWrapper>
+  );
 }
