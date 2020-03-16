@@ -10,7 +10,7 @@ import Home from './pages/Home';
 export default function App() {
   return (
     <Router>
-      <div className="body-container">
+      <div className="app-container">
         <Header />
 
         <main className="main">
