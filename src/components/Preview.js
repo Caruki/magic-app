@@ -1,5 +1,7 @@
 import React from 'react';
 import './Preview.css';
+import CardExample from './CardExample';
+import PreviewsWrapper from './PreviewsWrapper';
 
 export default function Preview(props) {
   // const cardExamples = [];
@@ -40,14 +42,13 @@ export default function Preview(props) {
   }, []);
 
   function newSet() {
-    const cards = cardExamples[0]?.data.map(setCard => (
-      <img
-        className="card-example"
-        key={setCard.image_uris.border_crop.toString()}
+    const cards = cardExamples[0]?.data.map(card => (
+      <CardExample
+        key={card.image_uris.border_crop.toString()}
         src={setCard.image_uris.border_crop}
         setURL={setCard.set_search_uri}
         alt=""
-      ></img>
+      ></CardExample>
     ));
     return <div className="previews-wrapper">{cards}</div>;
   }
@@ -55,13 +56,12 @@ export default function Preview(props) {
   function allSets() {
     const allSets = cardExamples?.slice(1);
     const cards = allSets?.map(setCard => (
-      <img
-        className="card-example"
+      <CardExample
         key={setCard.image_uris.border_crop.toString()}
         src={setCard.image_uris.border_crop}
         setURL={setCard.set_search_uri}
         alt=""
-      ></img>
+      ></CardExample>
     ));
     return <div className="previews-wrapper">{cards}</div>;
   }
@@ -77,5 +77,27 @@ export default function Preview(props) {
     return 'error';
   }
 
-  return <div>{showCards(props.name)}</div>;
+  return (
+    <PreviewsWrapper>
+      {isAllSet &&
+        cards?.map(card => (
+          <Link to={`/all/${card.id}`} key={card.id}>
+            <CardExample
+              src={card.image_uris.border_crop}
+              setURL={card.set_search_uri}
+              alt=""
+            />
+          </Link>
+        ))}
+      {!isAllSet &&
+        cards?.map(card => (
+          <CardExample
+            key={card.id}
+            src={card.image_uris.border_crop}
+            setURL={card.set_search_uri}
+            alt=""
+          />
+        ))}
+    </PreviewsWrapper>
+  );
 }
