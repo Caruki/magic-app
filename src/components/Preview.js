@@ -41,41 +41,25 @@ export default function Preview(props) {
     getCards();
   }, []);
 
-  function newSet() {
-    const cards = cardExamples[0]?.data.map(card => (
-      <CardExample
-        key={card.image_uris.border_crop.toString()}
-        src={setCard.image_uris.border_crop}
-        setURL={setCard.set_search_uri}
-        alt=""
-      ></CardExample>
-    ));
-    return <div className="previews-wrapper">{cards}</div>;
+  function getNewSetCards() {
+    return cardExamples[0]?.data;
   }
 
-  function allSets() {
-    const allSets = cardExamples?.slice(1);
-    const cards = allSets?.map(setCard => (
-      <CardExample
-        key={setCard.image_uris.border_crop.toString()}
-        src={setCard.image_uris.border_crop}
-        setURL={setCard.set_search_uri}
-        alt=""
-      ></CardExample>
-    ));
-    return <div className="previews-wrapper">{cards}</div>;
+  function getAllSetCards() {
+    return cardExamples?.slice(1);
   }
 
-  function showCards(setName) {
+  function getCardsBySet(setName) {
     if (setName === 'newSet') {
-      return newSet();
+      return getNewSetCards();
     } else if (setName === 'allSets') {
-      return allSets();
-    } else if (setName === 'customizedSets') {
-      return 'Not Valid';
+      return getAllSetCards();
+    } else {
+      return [];
     }
-    return 'error';
   }
+  const isAllSet = props.name === 'allSets';
+  const cards = getCardsBySet(props.name);
 
   return (
     <PreviewsWrapper>
