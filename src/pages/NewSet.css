@@ -1,0 +1,14 @@
+.heading-newset {
+  font-size: 2rem;
+  font-family: 'MPlantin';
+  color: rgb(183, 225, 241);
+  text-shadow: 6px -1px 5px rgba(7, 29, 53, 0.774);
+  text-align: center;
+  margin: 15px;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}

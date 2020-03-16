@@ -3,7 +3,7 @@ import './Preview.css';
 
 export default function Preview(props) {
   // const cardExamples = [];
-  const [cardExamples, setCard] = React.useState([]);
+  const [cardExamples, setCardExamples] = React.useState([]);
 
   React.useEffect(() => {
     async function getCards() {
@@ -27,35 +27,55 @@ export default function Preview(props) {
           'https://api.scryfall.com/cards/83e61813-c4c8-4e80-8808-ac5107966ee3'
         ),
         fetch(
-          'https://api.scryfall.com/cards/83e61813-c4c8-4e80-8808-ac5107966ee3'
+          'https://api.scryfall.com/cards/eee1d0b9-64c0-466e-978d-31e744f156d6'
         )
       ]);
       const results = await Promise.all(
         responses.map(response => response.json())
       );
       const cardExamples = results;
-      setCard(cardExamples);
+      setCardExamples(cardExamples);
     }
     getCards();
   }, []);
 
   function newSet() {
-    cardExamples[0].data.map(setCard => {
-      let imageURL = setCard.image_uris.border_crop;
-      console.log(imageURL);
-      return imageURL;
-    });
+    const cards = cardExamples[0]?.data.map(setCard => (
+      <img
+        className="card-example"
+        key={setCard.image_uris.border_crop.toString()}
+        src={setCard.image_uris.border_crop}
+        setURL={setCard.set_search_uri}
+        alt=""
+      ></img>
+    ));
+    return <div className="previews-wrapper">{cards}</div>;
+  }
+
+  function allSets() {
+    const allSets = cardExamples?.slice(1);
+    const cards = allSets?.map(setCard => (
+      <img
+        className="card-example"
+        key={setCard.image_uris.border_crop.toString()}
+        src={setCard.image_uris.border_crop}
+        setURL={setCard.set_search_uri}
+        alt=""
+      ></img>
+    ));
+    return <div className="previews-wrapper">{cards}</div>;
   }
 
   function showCards(setName) {
-    if (setName === 'newSets') {
+    if (setName === 'newSet') {
       return newSet();
-    } else return;
+    } else if (setName === 'allSets') {
+      return allSets();
+    } else if (setName === 'customizedSets') {
+      return 'Not Valid';
+    }
+    return 'error';
   }
 
-  return (
-    <div className="previews-wrapper">
-      <img className="card-example" src={showCards(props.name)} alt=""></img>
-    </div>
-  );
+  return <div>{showCards(props.name)}</div>;
 }
