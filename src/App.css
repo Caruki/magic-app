@@ -1,7 +1,8 @@
-.body-container {
+.app-container {
   display: flex;
   flex-flow: column nowrap;
   height: 100vh;
+  width: 100vw;
 }
 
 .main {
@@ -9,5 +10,4 @@
   display: flex;
   flex-flow: column nowrap;
   flex-grow: 1;
-  width: 100vw;
 }
