@@ -31,7 +31,7 @@ export default function NewSet() {
       <NewSetHeading>Theros Beyond Death</NewSetHeading>
       <CardsWrapper>
         {newSet.data?.map(card => (
-          <CardExample card={card} />
+          <CardExample card={card} key={card.id} />
         ))}
       </CardsWrapper>
     </>
