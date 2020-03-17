@@ -1,5 +1,16 @@
 import React from 'react';
-import './NewSet.css';
+import CardsWrapper from '../components/CardsWrapper';
+import CardExample from '../components/CardExample';
+import styled from '@emotion/styled';
+
+const NewSetHeading = styled.h1`
+  font-size: 2rem;
+  font-family: 'MPlantin';
+  color: rgb(183, 225, 241);
+  text-shadow: 6px -1px 5px rgba(7, 29, 53, 0.774);
+  text-align: center;
+  margin: 15px;
+`;
 
 export default function NewSet() {
   const [newSet, setCardSet] = React.useState([]);
@@ -10,31 +21,19 @@ export default function NewSet() {
         'https://api.scryfall.com/cards/search?order=set&q=e%3Athb&unique=prints'
       );
       const newSet = await response.json();
-      console.log(newSet);
       setCardSet(newSet);
     }
     getSet();
   }, []);
 
-  console.log(newSet);
-
-  function showCards() {
-    const cards = newSet.data?.map(setCard => (
-      <img
-        className="card-example"
-        key={setCard.image_uris.border_crop.toString()}
-        src={setCard.image_uris.border_crop}
-        alt=""
-      ></img>
-    ));
-    return <div className="cards-wrapper">{cards}</div>;
-  }
-
   return (
     <>
-      <div className="heading-newset">Theros Beyond Death</div>
-
-      <div>{showCards()}</div>
+      <NewSetHeading>Theros Beyond Death</NewSetHeading>
+      <CardsWrapper>
+        {newSet.data?.map(card => (
+          <CardExample card={card} />
+        ))}
+      </CardsWrapper>
     </>
   );
 }

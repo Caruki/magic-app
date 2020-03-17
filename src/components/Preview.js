@@ -1,8 +1,7 @@
 import React from 'react';
-import './Preview.css';
 import CardExample from './CardExample';
-import PreviewsWrapper from './PreviewsWrapper';
-import Link from 'react-router-dom';
+import PreviewsWrapper from './CardsWrapper';
+import { Link } from 'react-router-dom';
 
 export default function Preview({ name }) {
   const [cardExamples, setCardExamples] = React.useState([]);
