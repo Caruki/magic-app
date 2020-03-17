@@ -1,7 +1,6 @@
 import React from 'react';
 import CardExample from './CardExample';
-import PreviewsWrapper from './CardsWrapper';
-import { Link } from 'react-router-dom';
+import CardsWrapper from './CardsWrapper';
 
 export default function Preview({ name }) {
   const [cardExamples, setCardExamples] = React.useState([]);
@@ -61,15 +60,19 @@ export default function Preview({ name }) {
   const cards = getCardsBySet(name);
 
   return (
-    <PreviewsWrapper>
+    <CardsWrapper>
       {isAllSet &&
         cards?.map(card => (
-          <Link to={`/all/${card.set_name}`} key={card.id}>
-            <CardExample card={card} />
-          </Link>
+          <CardExample
+            key={card.id}
+            card={card}
+            as="a"
+            href={`/all/${card.set_name}`}
+          ></CardExample>
         ))}
+      ;
       {!isAllSet &&
         cards?.map(card => <CardExample card={card} key={card.id} />)}
-    </PreviewsWrapper>
+    </CardsWrapper>
   );
 }

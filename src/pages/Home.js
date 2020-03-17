@@ -13,14 +13,14 @@ import styled from '@emotion/styled';
 
 import Preview from '../components/Preview';
 
-// const Heading styled(Link) `
-//     font-size: 1.3rem;
-//     font-family: 'MPlantin';
-//     color: rgb(183, 225, 241);
-//     text-shadow: 6px -1px 5px rgba(7, 29, 53, 0.774);
-//     text-align: center;
-//     margin: 5px;
-//   `
+const Heading = styled(Link)`
+  font-size: 1.3rem;
+  font-family: 'MPlantin';
+  color: rgb(183, 225, 241);
+  text-shadow: 6px -1px 5px rgba(7, 29, 53, 0.774);
+  text-align: center;
+  margin: 5px;
+`;
 
 const TherosSymbol = styled.img`
   height: 30%;
@@ -36,9 +36,7 @@ export default function Home() {
     <>
       <HeadingWrapper>
         <TherosSymbol src={Theros} alt=""></TherosSymbol>
-        <Link to="/newset" className="heading">
-          The New Set - Theros Beyond Death
-        </Link>
+        <Heading to="/newset">The New Set - Theros Beyond Death</Heading>
         <TherosSymbol src={Theros} alt=""></TherosSymbol>
       </HeadingWrapper>
       <Preview name="newSet"></Preview>
@@ -46,9 +44,7 @@ export default function Home() {
         <HeadingSymbol src={Core} alt=""></HeadingSymbol>
         <HeadingSymbol src={RavnicaAll} alt=""></HeadingSymbol>
         <HeadingSymbol src={Eldraine} alt=""></HeadingSymbol>
-        <Link to="/all" className="heading">
-          Browse All Current Sets
-        </Link>
+        <Heading to="/all">Browse All Current Sets</Heading>
         <HeadingSymbol src={War} alt=""></HeadingSymbol>
         <HeadingSymbol src={TherosBW} alt=""></HeadingSymbol>
         <HeadingSymbol src={RavnicaGuild} alt=""></HeadingSymbol>
@@ -57,9 +53,7 @@ export default function Home() {
       <HeadingWrapper>
         <Manafont className="ms ms-w ms-cost ms-shadow manafont"></Manafont>
         <Manafont className="ms ms-u ms-cost ms-shadow manafont"></Manafont>
-        <Link to="/custom/:userId" className="heading">
-          Your Customized Decks
-        </Link>
+        <Heading to="/custom/:userId">Your Customized Decks</Heading>
         <Manafont className="ms ms-r ms-cost ms-shadow"></Manafont>
         <Manafont className="ms ms-b ms-cost ms-shadow manafont"></Manafont>
       </HeadingWrapper>
