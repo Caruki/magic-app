@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import Manawallpaper from '../assets/manawallpaper.jpg';
 
 const Header = styled.header`
-  width: 100vw;
+  width: 100%;
   height: 80px;
   display: flex;
   flex-flow: column nowrap;
@@ -30,7 +30,7 @@ const Header = styled.header`
   }
 `;
 
-const HeaderContainer = styled.div`
+const TitleContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -48,10 +48,10 @@ const HeaderText = styled.div`
 export default function AppHeader() {
   return (
     <Header>
-      <HeaderContainer>
+      <TitleContainer>
         <Logo />
         <Title>Magic Deck Tracker</Title>
-      </HeaderContainer>
+      </TitleContainer>
       <HeaderText>Save your favourite cards in personalized decks</HeaderText>
     </Header>
   );
