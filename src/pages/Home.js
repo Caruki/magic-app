@@ -1,6 +1,7 @@
 import React from 'react';
-import './Home.css';
 import { Link } from 'react-router-dom';
+import HeadingWrapper from '../components/HeadingWrapper';
+import HeadingSymbol from '../components/HeadingSymbol';
 import Theros from '../assets/theros-symbol.svg';
 import War from '../assets/war.svg';
 import Core from '../assets/core.svg';
@@ -8,41 +9,54 @@ import Eldraine from '../assets/eldraine.svg';
 import TherosBW from '../assets/therosbw.svg';
 import RavnicaGuild from '../assets/ravnicaguild.svg';
 import RavnicaAll from '../assets/ravnicaeallegiance.svg';
+import styled from '@emotion/styled';
 
 import Preview from '../components/Preview';
+
+const Heading = styled(Link)`
+  font-size: 1.3rem;
+  font-family: 'MPlantin';
+  color: rgb(183, 225, 241);
+  text-shadow: 6px -1px 5px rgba(7, 29, 53, 0.774);
+  text-align: center;
+  margin: 5px;
+`;
+
+const TherosSymbol = styled.img`
+  height: 30%;
+  padding-bottom: 10px;
+`;
+
+const Manafont = styled.i`
+  margin: 5px;
+`;
 
 export default function Home() {
   return (
     <>
-      <div className="text-wrapper">
-        <img className="theros-symbol" src={Theros} alt=""></img>
-        <Link to="/newset" className="heading">
-          The New Set - Theros Beyond Death
-        </Link>
-        <img className="theros-symbol" src={Theros} alt=""></img>
-      </div>
+      <HeadingWrapper>
+        <TherosSymbol src={Theros} alt=""></TherosSymbol>
+        <Heading to="/newset">The New Set - Theros Beyond Death</Heading>
+        <TherosSymbol src={Theros} alt=""></TherosSymbol>
+      </HeadingWrapper>
       <Preview name="newSet"></Preview>
-      <div className="text-wrapper">
-        <img className="symbol" src={Core} alt=""></img>
-        <img className="symbol" src={RavnicaAll} alt=""></img>
-        <img className="symbol" src={Eldraine} alt=""></img>
-        <Link to="/all" className="heading">
-          Browse All Current Sets
-        </Link>
-        <img className="symbol" src={War} alt=""></img>
-        <img className="symbol" src={TherosBW} alt=""></img>
-        <img className="symbol" src={RavnicaGuild} alt=""></img>
-      </div>
+      <HeadingWrapper>
+        <HeadingSymbol src={Core} alt=""></HeadingSymbol>
+        <HeadingSymbol src={RavnicaAll} alt=""></HeadingSymbol>
+        <HeadingSymbol src={Eldraine} alt=""></HeadingSymbol>
+        <Heading to="/all">Browse All Current Sets</Heading>
+        <HeadingSymbol src={War} alt=""></HeadingSymbol>
+        <HeadingSymbol src={TherosBW} alt=""></HeadingSymbol>
+        <HeadingSymbol src={RavnicaGuild} alt=""></HeadingSymbol>
+      </HeadingWrapper>
       <Preview name="allSets"></Preview>
-      <div className="text-wrapper">
-        <i className="ms ms-w ms-cost ms-shadow manafont"></i>
-        <i className="ms ms-u ms-cost ms-shadow manafont"></i>
-        <Link to="/custom/:userId" className="heading">
-          Your Customized Decks
-        </Link>
-        <i className="ms ms-r ms-cost ms-shadow manafont "></i>
-        <i className="ms ms-b ms-cost ms-shadow manafont"></i>
-      </div>
+      <HeadingWrapper>
+        <Manafont className="ms ms-w ms-cost ms-shadow manafont"></Manafont>
+        <Manafont className="ms ms-u ms-cost ms-shadow manafont"></Manafont>
+        <Heading to="/custom/:userId">Your Customized Decks</Heading>
+        <Manafont className="ms ms-r ms-cost ms-shadow"></Manafont>
+        <Manafont className="ms ms-b ms-cost ms-shadow manafont"></Manafont>
+      </HeadingWrapper>
       <Preview name="customizedSets"></Preview>
     </>
   );

@@ -1,10 +1,8 @@
 import React from 'react';
-import './Preview.css';
 import CardExample from './CardExample';
-import PreviewsWrapper from './PreviewsWrapper';
+import CardsWrapper from './CardsWrapper';
 
-export default function Preview(props) {
-  // const cardExamples = [];
+export default function Preview({ name }) {
   const [cardExamples, setCardExamples] = React.useState([]);
 
   React.useEffect(() => {
@@ -58,30 +56,23 @@ export default function Preview(props) {
       return [];
     }
   }
-  const isAllSet = props.name === 'allSets';
-  const cards = getCardsBySet(props.name);
+  const isAllSet = name === 'allSets';
+  const cards = getCardsBySet(name);
 
   return (
-    <PreviewsWrapper>
+    <CardsWrapper>
       {isAllSet &&
-        cards?.map(card => (
-          <Link to={`/all/${card.id}`} key={card.id}>
-            <CardExample
-              src={card.image_uris.border_crop}
-              setURL={card.set_search_uri}
-              alt=""
-            />
-          </Link>
-        ))}
-      {!isAllSet &&
         cards?.map(card => (
           <CardExample
             key={card.id}
-            src={card.image_uris.border_crop}
-            setURL={card.set_search_uri}
-            alt=""
-          />
+            card={card}
+            as="a"
+            href={`/all/${card.set_name}`}
+          ></CardExample>
         ))}
-    </PreviewsWrapper>
+      ;
+      {!isAllSet &&
+        cards?.map(card => <CardExample card={card} key={card.id} />)}
+    </CardsWrapper>
   );
 }

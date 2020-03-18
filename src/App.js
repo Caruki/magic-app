@@ -1,24 +1,38 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
-import Header from './components/Header';
+import AppHeader from './components/AppHeader';
 import NewSet from './pages/NewSet';
 import AllSets from './pages/AllSets';
 import CustomSets from './pages/CustomSets';
 import Home from './pages/Home';
+import styled from '@emotion/styled';
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  width: 100vw;
+`;
+
+const Main = styled.main`
+  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 1;
+`;
 
 export default function App() {
   return (
     <Router>
-      <div className="app-container">
-        <Header />
+      <AppContainer>
+        <AppHeader />
 
-        <main className="main">
+        <Main>
           <Switch>
             <Route path="/newset">
               <NewSet />
             </Route>
-            <Route path="/all">
+            <Route path="/all/:setName">
               <AllSets />
             </Route>
             <Route path="/custom/:userId">
@@ -28,8 +42,8 @@ export default function App() {
               <Home />
             </Route>
           </Switch>
-        </main>
-      </div>
+        </Main>
+      </AppContainer>
     </Router>
   );
 }
