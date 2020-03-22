@@ -72,7 +72,7 @@ export default function Preview({ name }) {
         ))}
       ;
       {!isAllSet &&
-        cards?.map(card => <CardExample card={card} key={card.id} />)}
+        cards?.map(card => <CardExample card={card} key={card.id} as="img" />)}
     </CardsWrapper>
   );
 }
