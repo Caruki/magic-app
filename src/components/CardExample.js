@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 // import isPropValid from '@emotion/is-prop-valid';
 
 const CardImage = styled.img`
-  width: ${props => (props.href ? '100%' : '100%')};
+  width: 100%;
   flex-basis: auto;
   flex: 0 1;
   margin: 10px;
@@ -37,7 +37,6 @@ function CardExample({ card, href }) {
         src={card.image_uris.border_crop}
         setURL={card.set_search_uri}
         alt=""
-        href={href}
       />
     </CardLink>
   );
