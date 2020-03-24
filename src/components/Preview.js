@@ -64,15 +64,21 @@ export default function Preview({ name }) {
       {isAllSet &&
         cards?.map(card => (
           <CardExample
+            src={card.image_uris.border_crop}
             key={card.id}
             card={card}
-            as="a"
             href={`/all/${card.set_name}`}
-          ></CardExample>
+          />
         ))}
-      ;
+
       {!isAllSet &&
-        cards?.map(card => <CardExample card={card} key={card.id} as="img" />)}
+        cards?.map(card => (
+          <CardExample
+            card={card}
+            key={card.id}
+            src={card.image_uris.border_crop}
+          />
+        ))}
     </CardsWrapper>
   );
 }

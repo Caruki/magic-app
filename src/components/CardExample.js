@@ -3,11 +3,10 @@ import styled from '@emotion/styled';
 // import isPropValid from '@emotion/is-prop-valid';
 
 const CardImage = styled.img`
-  width: 20%;
+  width: ${props => (props.href ? '100%' : '100%')};
   flex-basis: auto;
   flex: 0 1;
   margin: 10px;
-  cursor: ${props => (props.href ? 'pointer' : 'default')};
 
   @media (max-width: 450px) {
     width: 90%;
@@ -15,23 +14,32 @@ const CardImage = styled.img`
   }
 `;
 
-// const CardLink = styled('a', {
+const CardLink = styled.a`
+  width: 20%;
+  margin: 10px;
+
+  @media (max-width: 450px) {
+    width: 90%;
+  }
+`;
+
+//   {
 //   shouldForwardProp: prop => isPropValid(prop) && prop === 'as'
-// })(props => ({
-//   as: props.as,
-//   href: props.href,
+// })(
+//   props => ({
+//   as: 'a'
+// }))`
 
-// }));
-
-function CardExample({ card, as, href }) {
+function CardExample({ card, href }) {
   return (
-    <CardImage
-      src={card.image_uris.border_crop}
-      setURL={card.set_search_uri}
-      alt=""
-      as={as}
-      href={href}
-    ></CardImage>
+    <CardLink href={href}>
+      <CardImage
+        src={card.image_uris.border_crop}
+        setURL={card.set_search_uri}
+        alt=""
+        href={href}
+      />
+    </CardLink>
   );
 }
 
